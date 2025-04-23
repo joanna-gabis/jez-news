@@ -2,6 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Czy Jeż się już urodził?</title>
   <style>
     body {
@@ -15,87 +16,97 @@
       margin: 0;
       padding: 2rem;
       color: #3e3e3e;
+      text-align: center;
     }
 
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
       color: #3d5a40; /* dark green */
-    }
-
-    p {
-      font-size: 1.8rem;
-      margin-bottom: 2rem;
-      color: #6b4226; /* warm brown */
+      margin-bottom: 1rem;
     }
 
     .card {
-      background-color: #fffaf3;
-      border: 2px solid #d6c2a6;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-      max-width: 400px;
-      text-align: center;
-      cursor: pointer;
+      width: 200px;
+      height: 120px;
       perspective: 1000px;
-      transition: transform 0.6s;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
     }
 
     .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
       transform-style: preserve-3d;
       transition: transform 0.6s;
     }
 
-    .card-flip {
+    .card.flip .card-inner {
       transform: rotateY(180deg);
     }
 
-    .card .front, .card .back {
-      backface-visibility: hidden;
+    .card-front, .card-back {
       position: absolute;
       width: 100%;
       height: 100%;
+      backface-visibility: hidden;
+      border: 2px solid #d6c2a6;
+      border-radius: 1rem;
+      background-color: #fffaf3;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      font-size: 2rem;
     }
 
-    .card .back {
+    .card-back {
       transform: rotateY(180deg);
-      background-color: #fffaf3;
-      color: #6b4226; /* warm brown */
+      background-color: #6b4226;
+      color: white;
     }
 
     img {
       max-width: 200px;
-      margin-top: 1rem;
+      border-radius: 1rem;
     }
 
-    /* Mobile responsiveness */
+    /* Mobile styling */
     @media (max-width: 600px) {
       h1 {
-        font-size: 3rem; /* Bigger text for mobile */
+        font-size: 3rem;
       }
 
-      p {
-        font-size: 2rem; /* Bigger text for mobile */
+      .card-front, .card-back {
+        font-size: 2.5rem;
+      }
+
+      .card {
+        width: 240px;
+        height: 140px;
+      }
+
+      img {
+        max-width: 240px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="card" onclick="this.querySelector('.card-inner').classList.toggle('card-flip')">
+  <h1>Czy Jeż się już urodził?</h1>
+
+  <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
-      <div class="front">
-        <h1>Czy Jeż już się urodził?</h1>
-        <img src="https://media.istockphoto.com/id/165676849/vector/hedgehog-meets-a-snail.jpg?s=612x612&w=0&k=20&c=Z17wwGADoXIY856UceoaTnnkEdwqbmEOvG2YQCjShnw=" alt="Hedgehog Animal Cartoon">
-      </div>
-      <div class="back">
-        <h1>Odpowiedź:</h1>
-        <p>Nie</p>
-      </div>
+      <div class="card-front">?</div>
+      <div class="card-back">Nie</div>
     </div>
   </div>
+
+  <img src="https://media.istockphoto.com/id/165676849/vector/hedgehog-meets-a-snail.jpg?s=612x612&w=0&k=20&c=Z17wwGADoXIY856UceoaTnnkEdwqbmEOvG2YQCjShnw=" alt="Hedgehog Animal Cartoon">
+
+  <script>
+    function flipCard(cardElement) {
+      cardElement.classList.toggle('flip');
+    }
+  </script>
 </body>
 </html>
