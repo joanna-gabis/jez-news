@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Czy Jeż już się urodził?</title>
+  <title>Czy Jeż się już urodził?</title>
   <style>
     body {
       background-color: #f9f5e9; /* soft beige */
@@ -37,19 +37,66 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.1);
       max-width: 400px;
       text-align: center;
+      cursor: pointer;
+      perspective: 1000px;
+      transition: transform 0.6s;
+    }
+
+    .card-inner {
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+
+    .card-flip {
+      transform: rotateY(180deg);
+    }
+
+    .card .front, .card .back {
+      backface-visibility: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card .back {
+      transform: rotateY(180deg);
+      background-color: #fffaf3;
+      color: #6b4226; /* warm brown */
     }
 
     img {
       max-width: 200px;
       margin-top: 1rem;
     }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3rem; /* Bigger text for mobile */
+      }
+
+      p {
+        font-size: 2rem; /* Bigger text for mobile */
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Czy Jeż już się urodził?</h1>
-    <p>Nie</p>
-    <img src="https://media.istockphoto.com/id/165676849/vector/hedgehog-meets-a-snail.jpg?s=612x612&w=0&k=20&c=Z17wwGADoXIY856UceoaTnnkEdwqbmEOvG2YQCjShnw=" alt="Hedgehog Animal Cartoon">
+  <div class="card" onclick="this.querySelector('.card-inner').classList.toggle('card-flip')">
+    <div class="card-inner">
+      <div class="front">
+        <h1>Czy Jeż już się urodził?</h1>
+        <p>Nie</p>
+        <img src="https://media.istockphoto.com/id/165676849/vector/hedgehog-meets-a-snail.jpg?s=612x612&w=0&k=20&c=Z17wwGADoXIY856UceoaTnnkEdwqbmEOvG2YQCjShnw=" alt="Hedgehog Animal Cartoon">
+      </div>
+      <div class="back">
+        <h1>Odpowiedź:</h1>
+        <p>Nie</p>
+      </div>
+    </div>
   </div>
 </body>
 </html>
